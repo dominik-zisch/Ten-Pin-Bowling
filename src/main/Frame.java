@@ -10,6 +10,9 @@ public class Frame {
 	private boolean finished;
 	private int bonusesWaiting;
 	
+	/**
+	 * Constructor
+	 */
 	public Frame() {
 		pins = new int[2];
 		score = 0;
@@ -20,6 +23,11 @@ public class Frame {
 		bonusesWaiting = 0;
 	}
 	
+	/**
+	 * Submit a score for this frame
+	 * @param s number of pins knocked over
+	 * @throws BowlingException
+	 */
 	public void shot(int s) throws BowlingException {
 		
 		if (score+s > 10 || s < 0)
@@ -28,18 +36,19 @@ public class Frame {
 		pins[attempts] = s;
 		attempts++;
 		score += s;
-		if (attempts==1 && s==10) {
+		if (attempts==1 && s==10) { // strike
 			isStrike = true;
 			bonusesWaiting = 2;
 		}
-		if (attempts==2 && pins[0]+pins[1]==10) {
+		if (attempts==2 && pins[0]+pins[1]==10) { //spare
 			isSpare = true;
 			bonusesWaiting = 1;
 		}
-		if (attempts==2 || isStrike || isSpare)
+		if (attempts==2 || isStrike || isSpare) // frame is finished
 			finished = true;
 	}
 	
+	// add bonus to this frame
 	public void addBonus(int b) {
 		score += b;
 		bonusesWaiting--;

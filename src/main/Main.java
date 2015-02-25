@@ -18,7 +18,12 @@ public class Main {
 			e.printStackTrace();
 		}
 		
-		game.newGame();
+		try {
+			game.newGame();
+		} catch (BowlingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		for (int i=0; i<24; i++) {
 			try {

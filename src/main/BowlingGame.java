@@ -42,8 +42,11 @@ public class BowlingGame {
 	
 	/**
 	 * start a new game
+	 * @throws BowlingException 
 	 */
-	public void newGame() {
+	public void newGame() throws BowlingException {
+		if (players.size()==0)
+			throw new BowlingException("No players added!");
 		frame = 0;
 		currentPlayerIndex = 0;
 		currentPlayer = players.get(0);
@@ -98,5 +101,9 @@ public class BowlingGame {
 		for (Player p : players) {
 			p.printScores();
 		}
+	}
+	
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
 }
